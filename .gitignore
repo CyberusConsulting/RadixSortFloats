@@ -1,0 +1,37 @@
+﻿
+# ---------------------------
+# App Specific
+# ---------------------------
+
+# ---------------------------
+# General Folders
+# ---------------------------
+.idea/*
+.vs/*
+x64/*
+node_modules
+xcuserdata
+xcuserstate
+xcbkptlist
+xcscheme
+
+# ---------------------------
+# General Files
+# ---------------------------
+# Allow: 
+
+.DS_Store
+*.ini
+*.lock
+*.xccheckout
+*.xcodeproj
+*.xcworkspace
+*.xcuserstate
+*.xcbkptlist
+*.xcscheme
+*.xcworkspacedata
+
+# ---------------------------
+# Dev Files
+# ---------------------------
+Find-Errors.ps1

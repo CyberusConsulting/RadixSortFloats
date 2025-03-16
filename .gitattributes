@@ -1,0 +1,125 @@
+
+# ---------------------------
+# NOTE: To send large files to LFS by default, use the following syntax
+#
+# Example:
+# *.uasset filter=lfs diff=lfs merge=lfs -text
+#
+# And yes, the -text tells LFS that this is *not* a text file (!)
+# ---------------------------
+
+# ---------------------------
+# Default text format
+# ---------------------------
+* text eol=crlf
+
+*.html text eol=crlf
+*.js text eol=crlf
+*.css text eol=crlf
+*.json text eol=crlf
+*.md text eol=crlf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+# ---------------------------
+# Windows files always keep Windows linebreaks
+# ---------------------------
+*.cs text eol=crlf
+*.sln text eol=crlf
+*.ini text eol=crlf
+*.vcxproj text eol=crlf
+*.vcxproj.* text eol=crlf
+*.csproj text eol=crlf
+*.props text eol=crlf
+# *.meta text eol=crlf
+*.modules text eol=crlf
+
+# ---------------------------
+# Binary files, no change
+# ---------------------------
+# +MUSIC supported Audio: aiff, flac, mp3, oga, ogg, sb0, wav
+
+# TODO: We really need to glob(ify) these extensions to make them case insensitve!
+# Example:
+# *.[eE][xX][eE] binary
+
+*.aai binary
+*.3ds binary
+*.7z binary
+*.a binary
+*.aiff binary
+*.afp binary
+*.blend binary
+*.bytes binary
+*.cubemap binary
+*.dat binary
+*.dll binary
+*.doc binary
+*.duf binary
+*.bin binary
+*.bin.fbx binary
+*.eps binary
+*.exe binary
+*.exr binary
+*.fbx binary
+*.flv binary
+*.fla binary
+*.flac binary
+*.gz binary
+*.gif binary
+*.hdf5 binary
+*.hdr binary
+*.ico binary
+*.idx binary
+*.idb binary
+*.ifp binary
+*.ifg binary
+*.ipch binary
+*.jpg binary
+*.jpeg binary
+*.lid binary
+*.lib binary
+*.mb binary
+*.mtl binary
+*.mov binary
+*.mp3 binary
+*.mp4 binary
+*.mhf binary
+*.npy binary
+*.npz binary
+*.o binary
+*.obj binary
+*.opk binary
+*.opus binary
+*.oga binary
+*.ogg binary
+*.out binary
+*.pk binary
+*.pch binary
+*.pdb binary
+*.pdf binary
+*.png binary
+*.prj binary
+*.psd binary
+*.res binary
+*.rfp binary
+*.sav binary
+*.sb0 binary
+*.so binary
+*.swf binary
+*.svg binary
+*.tga binary
+*.tif binary
+*.tiff binary
+*.ts binary
+*.ttf binary
+*.uasset binary
+*.udk binary
+*.umap binary
+*.upk binary
+*.wav binary
+*.woff2 binary
+*.xcf binary
+*.xls binary
+*.xlsx binary
+*.zip binary
