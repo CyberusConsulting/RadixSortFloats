@@ -15,8 +15,8 @@ This will double your memory footprint!
 The function could be refactored to only use the input array and shuffle values in-place but it would loose some of its performance gains.
 
 ### How it works:
-- Postive floats have a bitpattern where the smaller the float value, the smaller the HEX value.
-- Negative floats have a reverse bitpattern where the smaller the float value, the larger the HEX value.
+- Postive floats have a bitpattern where smaller float values have a smaller HEX value.
+- Negative floats have a reverse bitpattern where smaller float values have a larger HEX value.
 - Negative floats *always* have larger HEX values than postive floats.
 
 ### We exploit this pattern to correctly sort floats:

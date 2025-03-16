@@ -21,14 +21,12 @@ Revisions:
 #include "RadixSortFloats.h"
 
 
-#define SORT_ASCENDING            true
-#define SORT_DESCENDING           false
-
-#define SHOW_DEBUG                true
-#define HIDE_DEBUG                false
-
-#define USE_RADIX_SORT            0
-#define USE_QSORT                 1
+constexpr bool SORT_ASCENDING     = true;
+constexpr bool SORT_DESCENDING    = false;
+constexpr bool SHOW_DEBUG         = true;
+constexpr bool HIDE_DEBUG         = false;
+constexpr int USE_RADIX_SORT      = 0;
+constexpr int USE_QSORT           = 1;
 
 LARGE_INTEGER frequency;
 LARGE_INTEGER start, end;
@@ -39,7 +37,7 @@ LARGE_INTEGER start, end;
 // Test the performance of both the built-in qsort()
 // and our optimized radix sort functions
 //---------------------------------------------------------
-void TestFloatSort(int sort_type, int num_cycles, int num_values, bool ascending, bool show_debug) {
+static void TestFloatSort(int sort_type, int num_cycles, int num_values, bool ascending, bool show_debug) {
 
   printf(
     "\nTestFloatSort():\nsort_type: %d, num_cycles: %d, num_values: %d, ascending: %d, show_debug: %d\n\n",
@@ -97,8 +95,8 @@ void TestFloatSort(int sort_type, int num_cycles, int num_values, bool ascending
 
   uint32_t* float_int_ptr = (uint32_t*)&float_array[0];
   uint32_t* float_int_ptr_temp = (uint32_t*)&float_array_temp[0];
-  uint32_t* int_ptr_sorted = NULL;
-  float* float_ptr_sorted = NULL;
+  uint32_t* int_ptr_sorted = float_int_ptr;
+  float* float_ptr_sorted = float_array;
 
   // Sort the float array using qsort?
   if (USE_QSORT == sort_type) {
@@ -119,10 +117,7 @@ void TestFloatSort(int sort_type, int num_cycles, int num_values, bool ascending
       QueryPerformanceCounter(&end);      // Stop the timer
     }
 
-    float_ptr_sorted = float_array;
-    int_ptr_sorted = float_int_ptr;
-
-    // Sort the array using Radix Sort?
+  // Sort the array using Radix Sort?
   } else {
 
     QueryPerformanceCounter(&start);    // Start the timer
@@ -155,16 +150,15 @@ void TestFloatSort(int sort_type, int num_cycles, int num_values, bool ascending
     printf("Sorted array in HEX with -XOR:\n");
     for (int i=0; i<num_values; i++) {
       uint32_t* pval = &int_ptr_sorted[i];
-      if (IS_NEGATIVE(*pval)) {
+      if (RSF_IS_NEGATIVE(*pval)) {
         printf("%08X ", int_ptr_sorted[i]);
       } else {
-        printf("%08X ", (XOR_POSITIVE(int_ptr_sorted[i])));
+        printf("%08X ", (RSF_XOR_POSITIVE(int_ptr_sorted[i])));
       }
     }
     printf("\n\n");
   }
 }
-
 
 //---------------------------------------------------------
 int main() {
@@ -178,8 +172,12 @@ int main() {
   //---------------------------------------------------------
   // Run the test(s)
   //---------------------------------------------------------
-  //TestFloatSort(USE_QSORT, 1, 100, SORT_ASCENDING, SHOW_DEBUG);
-  TestFloatSort(USE_RADIX_SORT, 1, 100, SORT_ASCENDING, SHOW_DEBUG);
+
+  //TestFloatSort(USE_QSORT,      1, 100, SORT_ASCENDING, SHOW_DEBUG);
+  //TestFloatSort(USE_RADIX_SORT, 1, 100, SORT_ASCENDING, SHOW_DEBUG);
+
+  TestFloatSort(USE_QSORT,      1000, 10000, SORT_ASCENDING, HIDE_DEBUG);
+  TestFloatSort(USE_RADIX_SORT, 1000, 10000, SORT_ASCENDING, HIDE_DEBUG);
 
   return 0;
 }

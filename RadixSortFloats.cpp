@@ -55,7 +55,7 @@ Revisions:
 // 
 //---------------------------------------------------------
 uint32_t* RadixSortFloatsAsInts(uint32_t element_count, uint32_t* input_buffer, uint32_t* scratchpad, bool ascending) {
-  const uint32_t byte_count = 4;
+  constexpr uint32_t byte_count = 4;
   uint32_t m_index[byte_count][256] ={ {0},{0} };
  
   // Sanity check
@@ -64,7 +64,7 @@ uint32_t* RadixSortFloatsAsInts(uint32_t element_count, uint32_t* input_buffer, 
   // Generate a histogram of the byte values for each element
   for (uint32_t e=0; e<element_count; e++) {
     uint32_t val = input_buffer[e];
-    if (!IS_NEGATIVE(val)) { val = XOR_POSITIVE(val); }
+    if (!RSF_IS_NEGATIVE(val)) { val = RSF_XOR_POSITIVE(val); }
     m_index[0][(val & 0x000000FF)]++; val >>= 8;
     m_index[1][(val & 0x000000FF)]++; val >>= 8;
     m_index[2][(val & 0x000000FF)]++; val >>= 8;
@@ -101,10 +101,10 @@ uint32_t* RadixSortFloatsAsInts(uint32_t element_count, uint32_t* input_buffer, 
   for (uint32_t b=0; b<byte_count; b++) {
     for (uint32_t e=0; e<element_count; e++) {
       uint32_t val = psrc[e];
-      if (!IS_NEGATIVE(val)) {
-        pdst[m_index[b][SHIFT_RIGHT_MASK_8(XOR_POSITIVE(val), shift_bits)]++] = val;
+      if (!RSF_IS_NEGATIVE(val)) {
+        pdst[m_index[b][RSF_SHIFT_RIGHT_MASK_8(RSF_XOR_POSITIVE(val), shift_bits)]++] = val;
       } else {
-        pdst[m_index[b][SHIFT_RIGHT_MASK_8(val, shift_bits)]++] = val;
+        pdst[m_index[b][RSF_SHIFT_RIGHT_MASK_8(val, shift_bits)]++] = val;
       }
     }
     shift_bits += 8;
