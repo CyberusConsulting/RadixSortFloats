@@ -24,12 +24,14 @@ The function could be refactored to only use the input array and shuffle values 
 - This allows us to place them correctly in the sorted array according to their actual float value.
 - As a side effect, since IEEE floats can have negative zeros (0x80000000), this also sorts -0.0 correctly.
 
+```
 -FLT_MAX   = 0xFF7FFFFF            = 0xFF7FFFFF
 -FLT_MIN   = 0x80800000            = 0x80800000
 -0.0       = 0x80000000            = 0x80000000
  0.0       = 0x00000000    XOR     = 0x7FFFFFFF
  FLT_MIN   = 0x00800000    XOR     = 0x7F7FFFFF
  FLT_MAX   = 0x7F7FFFFF    XOR     = 0x00800000
+```
 
 ### TODO:
 - Make a version using double/uint64_t
