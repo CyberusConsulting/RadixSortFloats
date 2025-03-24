@@ -15,8 +15,7 @@ Revisions:
 
 #include <windows.h>
 #include <iostream>
-#include <cstdlib> // for rand() and srand()
-#include <ctime>   // for time()
+#include <cstdlib>    // For rand() and srand()
 
 #include "RadixSortFloats.h"
 

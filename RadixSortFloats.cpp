@@ -56,7 +56,7 @@ Revisions:
 //---------------------------------------------------------
 uint32_t* RadixSortFloatsAsInts(uint32_t element_count, uint32_t* input_buffer, uint32_t* scratchpad, bool ascending) {
   constexpr uint32_t byte_count = 4;
-  uint32_t m_index[byte_count][256] ={ {0},{0} };
+  uint32_t m_index[byte_count][256] = { {0},{0} };
  
   // Sanity check
   if ((element_count < 2) || (NULL == input_buffer) || (NULL == scratchpad)) { return input_buffer; }
