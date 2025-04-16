@@ -12,7 +12,7 @@ The larger the input array, the better the performance gains.
 ### NOTE: 
 This function needs an additional empty array of the same size as the float input to be used as a temporary scratchpad. 
 This will double your memory footprint!
-The function could be refactored to only use the input array and shuffle values in-place but it would loose some of its performance gains.
+The function could be refactored to only use the input array and shuffle values in-place but it would lose some of its performance gains.
 
 ### How it works:
 - Postive floats have a bitpattern where smaller float values have a smaller HEX value.

@@ -3,6 +3,7 @@
 # App Specific
 # ---------------------------
 .backup/*
+*.bat
 
 # ---------------------------
 # General Folders
